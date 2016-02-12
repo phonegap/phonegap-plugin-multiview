@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="phonegap-plugin-multiview"
+    version="0.0.1">
+    <name>Multiview</name>
+    <description>Multiple Views for PhoneGap apps</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,phonegap,multiview</keywords>
+    <repo>https://github.com/purplecabbage/phonegap-plugin-multiview</repo>
+    <issue>https://github.com/purplecabbage/phonegap-plugin-multiview/issues</issue>
+
+    <js-module src="www/multiview.js" name="multiview">
+        <clobbers target="PGMultiview" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PGMultiview">
+                <param name="ios-package" value="PGMultiview"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/PGMultiview.h" />
+        <source-file src="src/ios/PGMultiview.m" />
+    </platform>
+
+</plugin>

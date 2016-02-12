@@ -1,0 +1,23 @@
+{
+  "name": "phonegap-plugin-multiview",
+  "version": "0.0.1",
+  "description": "PhoneGap Multiview Plugin",
+  "cordova": {
+    "id": "phonegap-plugin-multiview",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/purplecabbage/phonegap-plugin-multiview"
+  },
+  "keywords": [
+    "cordova",
+    "multiview",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Jesse MacFadyen",
+  "license": "Apache-2.0"
+}
