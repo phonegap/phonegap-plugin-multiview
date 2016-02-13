@@ -12,6 +12,11 @@ Thumbs.db
 *.swp
 *.user
 
+demo/hooks/
+demo/platforms/
+demo/plugins/
+
+
 
 
 
