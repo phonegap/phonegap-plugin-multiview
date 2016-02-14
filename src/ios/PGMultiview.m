@@ -23,7 +23,7 @@
 - (void)loadView:(CDVInvokedUrlCommand*)command
 {
     childViewController = [[CDVViewController alloc] init];
-    childViewController.startPage = @"index2.html"; // todo: this is a parameter
+    childViewController.startPage = [command argumentAtIndex:0];
     
     if(self.viewController.navigationController == NULL)
     {
