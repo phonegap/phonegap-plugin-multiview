@@ -13,31 +13,27 @@
 @synthesize childViewController;
 
 
-
 - (void)dismissView:(CDVInvokedUrlCommand*)command
 {
-    [self.viewController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-    
+    [self.viewController.navigationController popViewControllerAnimated:YES];
+    childViewController = NULL;
+
 }
 
 - (void)loadView:(CDVInvokedUrlCommand*)command
 {
-    
     childViewController = [[CDVViewController alloc] init];
-    childViewController.startPage = @"index.html"; // todo: this is a parameter
+    childViewController.startPage = @"index2.html"; // todo: this is a parameter
     
-    // self.viewController.modalPresentationStyle = UIModalPresentationNone;
+    if(self.viewController.navigationController == NULL)
+    {
+        UINavigationController* nav = [[UINavigationController alloc] init];
+        nav.navigationBarHidden = YES;
+        self.webView.window.rootViewController = nav;
+        [nav pushViewController:self.viewController animated:NO];
+    }
     
-    // CATransition *transition = [CATransition new];
-    // transition.type = kCATransitionPush;
-    // transition.subtype = kCATransitionFromRight;
-    
-    // // Add the transition
-    // [self.viewController.view.layer addAnimation:transition forKey:@"transition"];
-    [self.viewController showViewController:childViewController sender:NULL];
-    
+    [self.viewController.navigationController pushViewController:childViewController animated:YES];
 }
 
 @end
