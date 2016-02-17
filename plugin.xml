@@ -28,4 +28,11 @@
         <source-file src="src/ios/PGMultiview.m" />
     </platform>
 
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/PGMultiviewProxy.js" name="PGMultiviewProxy">
+            <merges target="" />
+        </js-module>
+    </platform>
+
 </plugin>
