@@ -18,6 +18,16 @@
     }
 }
 
+// - (void)viewDidLoad
+// {
+//     [super viewDidLoad];
+//     CGRect webViewBounds = self.view.bounds;
+//     webViewBounds.origin = self.view.bounds.origin;
+//     webViewBounds.origin.x = 1;
+//     webViewBounds.size.width = webViewBounds.size.width - 1;
+//     self.webView.bounds = webViewBounds;
+// }
+
 @end
 
 
