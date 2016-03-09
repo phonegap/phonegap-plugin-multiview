@@ -7,9 +7,8 @@ module.exports = {
 	loadView:function(strPath) {
 		exec(null,null,"PGMultiview","loadView",[strPath]);
 	},
-    
+
     dismissView:function() {
         exec(null,null,"PGMultiview","dismissView",[]);
     }
-
 }
