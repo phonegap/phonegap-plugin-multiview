@@ -33,6 +33,10 @@
         <js-module src="src/windows/PGMultiviewProxy.js" name="PGMultiviewProxy">
             <merges target="" />
         </js-module>
+
+        <js-module src="src/windows/NotifyExec.js" name="NotifyExec">
+            <merges target="" />
+        </js-module>
     </platform>
 
 </plugin>
