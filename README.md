@@ -1,6 +1,7 @@
 # phonegap-plugin-multiview
 
-This plugin allows your PhoneGap app to create multiple views. Currently only iOS is supported.
+This plugin (will eventually) allow your PhoneGap app to create multiple views. 
+Currently only iOS is supported. Windows is in development.
 
 Each view:
 
