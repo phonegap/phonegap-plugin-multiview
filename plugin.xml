@@ -15,6 +15,18 @@
         <clobbers target="PGMultiview" />
     </js-module>
 
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PGMultiView">
+                <param name="android-package" value="phonegap.pgmultiview"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/PGMultiView.java" target-dir="src/phonegap/pgmultiview" />
+    </platform>
+
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
