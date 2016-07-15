@@ -1,6 +1,6 @@
 # phonegap-plugin-multiview
 
-This plugin (will eventually) allow your PhoneGap app to create multiple views. 
+This plugin (will eventually) allow your PhoneGap app to create multiple views.
 Currently only iOS is supported. Windows is in development.
 
 Each view:
@@ -24,12 +24,12 @@ The currently API is dead simple, expect it to change in the future
 Open a new view:
 ===
 
-    PGMultiview.loadView(srcUrl);
+    PGMultiView.loadView(srcUrl);
 
 And remove it:
 ===
 
-    PGMultiview.dismissView();
+    PGMultiView.dismissView();
 
 Currently there are no callbacks, or events.
 

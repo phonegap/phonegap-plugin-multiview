@@ -1,5 +1,5 @@
 
-package phonegap.pgmultiview;
+package phonegap.PGMultiView;
 
 import android.annotation.SuppressLint;
 import android.util.Log;

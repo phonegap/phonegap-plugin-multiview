@@ -30,12 +30,12 @@ var app = {
 
         btnShowNext.addEventListener("touchend",function(){
             localStorage.setItem("currentDepth",++currentDepth);
-            PGMultiview.loadView("www/index.html");
+            PGMultiView.loadView("www/index.html");
         });
 
         btnDismiss.addEventListener("touchend",function(){
             localStorage.setItem("currentDepth",--currentDepth);
-            PGMultiview.dismissView();
+            PGMultiView.dismissView();
         });
 
     },
