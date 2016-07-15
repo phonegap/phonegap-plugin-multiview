@@ -16,6 +16,7 @@ demo/hooks/
 demo/platforms/
 demo/plugins/
 
+.vscode/
 
 
 
@@ -25,4 +26,4 @@ demo/plugins/
 
 
 
- 
+
