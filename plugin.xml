@@ -20,11 +20,11 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="PGMultiView">
-                <param name="android-package" value="phonegap.PGMultiView"/>
+                <param name="android-package" value="phonegap.pgmultiview.PGMultiView"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/PGMultiView.java" target-dir="src/phonegap/PGMultiView" />
+        <source-file src="src/android/PGMultiView.java" target-dir="src/phonegap/pgmultiview" />
     </platform>
 
     <!-- ios -->
