@@ -15,6 +15,7 @@ Thumbs.db
 demo/hooks/
 demo/platforms/
 demo/plugins/
+demo/.cordova
 
 .vscode/
 
