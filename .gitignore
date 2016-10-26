@@ -18,6 +18,8 @@ demo/plugins/
 demo/.cordova
 
 .vscode/
+node_modules/
+
 
 
 
