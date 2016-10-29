@@ -13,6 +13,36 @@ body {
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
-    margin:20px 10px;
+    width:100%;
+    margin:20px 0px;
     padding:0px;
 }
+
+.btnDiv {
+    width:120px;
+    height:40px;
+    background-color:#eee;
+    line-height:40px;
+    border:solid 1px #fff;
+    margin:60px 0px;
+    text-align:center;
+    float:right;
+}
+
+.contentWrap {
+    margin:30px 10px;
+    /*border:solid 1px Red;*/
+}
+
+.contentWrap div {
+    margin:20px 0px;
+}
+
+#txtArea {
+    border-radius: 0;
+    width:100%;
+    margin: 0;
+    padding:0;
+}
+
+
