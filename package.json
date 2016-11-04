@@ -5,7 +5,8 @@
   "cordova": {
     "id": "phonegap-plugin-multiview",
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   },
   "repository": {
