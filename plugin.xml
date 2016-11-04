@@ -25,7 +25,7 @@
         </config-file>
 
         <source-file src="src/android/PGMultiView.java" target-dir="src/phonegap/pgmultiview" />
-        <source-file src="src/android/cl/PGMultiViewActivity.java" target-dir="src/phonegap/pgmultiview" />
+        <source-file src="src/android/PGMultiViewActivity.java" target-dir="src/phonegap/pgmultiview" />
     </platform>
 
     <!-- ios -->
