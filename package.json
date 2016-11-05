@@ -17,7 +17,8 @@
     "cordova",
     "multiview",
     "ecosystem:cordova",
-    "cordova-ios"
+    "cordova-ios",
+    "cordova-android"
   ],
   "author": "Jesse MacFadyen",
   "license": "Apache-2.0"
