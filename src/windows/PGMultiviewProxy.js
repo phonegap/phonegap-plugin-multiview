@@ -69,4 +69,4 @@ module.exports = {
 	}
 }
 
-require("cordova/exec/proxy").add("PGMultiview", module.exports);
+require("cordova/exec/proxy").add("PGMultiView", module.exports);

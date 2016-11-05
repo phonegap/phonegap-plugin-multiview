@@ -1,3 +1,4 @@
+
 /*
        Licensed to the Apache Software Foundation (ASF) under one
        or more contributor license agreements.  See the NOTICE file
@@ -27,19 +28,36 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.LOG;
+
+
+package phonegap.pgmultiview;
+
+import android.annotation.SuppressLint;
+import android.util.Log;
+
+import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
 import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaHttpAuthHandler;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.LOG;
+
 import org.apache.cordova.PluginManager;
 import org.apache.cordova.PluginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import android.manifest;
 import android.app.Activity;
 import android.os.Build;
 import android.content.Intent;
+import android.content.Intent;
+
+
+@SuppressLint("SetJavaScriptEnabled")
 
 public class PGMultiView extends CordovaPlugin {
 
@@ -54,14 +72,13 @@ public class PGMultiView extends CordovaPlugin {
      * @param args JSONArry of arguments for the plugin.
      * @param callbackContext the callbackContext used when calling back into JavaScript.
      * @return boolean success or fail
-     */
+
 
 
     //cordova is context of main activity.  webView is the webview we are running the main Activity (cordova) inside of.
      public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
   }
-
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("loadView") &&args.length() > 0) {
             final String url = args.getString(0);
@@ -74,9 +91,6 @@ public class PGMultiView extends CordovaPlugin {
         }
         else if (action.equals("dismissView")) {
             quit();
-        }
-        return true;
-    }
 
     private void viewWebView(final String url){ //url is passed in from execute, its args.getstring(0)
       Intent intent = new Intent(this.cordova.getActivity(), PGMultiViewActivity.class);  //initialized intent as variable of type 'Intent' updated to send to secondary activity, not another class.
@@ -89,5 +103,6 @@ public class PGMultiView extends CordovaPlugin {
       Log.d("you are now exiting the app");
       this.cordova.getActivity.finish();
     }
+
 
 }

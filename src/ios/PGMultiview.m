@@ -5,12 +5,12 @@
 
 #import <QuartzCore/CoreAnimation.h>
 #import <Cordova/CDV.h>
-#import "PGMultiview.h"
+#import "PGMultiView.h"
 
 
-#pragma mark PGMultiviewController - CDVViewController subclass
+#pragma mark PGMultiViewController - CDVViewController subclass
 
-@implementation PGMultiviewController
+@implementation PGMultiViewController
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake) {
@@ -31,7 +31,7 @@
 @end
 
 
-@implementation PGMultiview
+@implementation PGMultiView
 
 @synthesize childViewController;
 
@@ -75,11 +75,11 @@
 
 - (void)loadView:(CDVInvokedUrlCommand*)command
 {
-    childViewController = [[PGMultiviewController alloc] init];
+    childViewController = [[PGMultiViewController alloc] init];
     childViewController.startPage = [command argumentAtIndex:0];
-    
+
     // TODO: set proper config.xml -> childViewController.configFile
-    
+
     if(self.viewController.navigationController == NULL)
     {
         UINavigationController* nav = [[UINavigationController alloc] init];
@@ -89,9 +89,9 @@
         [nav pushViewController:self.viewController animated:NO];
         nav.hidesBarsOnSwipe  = YES;
         nav.hidesBarsOnTap = YES;
-        
+
     }
-    
+
     [self.viewController.navigationController pushViewController:childViewController animated:YES];
 }
 

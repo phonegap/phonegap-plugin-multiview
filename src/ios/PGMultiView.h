@@ -2,16 +2,16 @@
 #import <UIKit/UIKit.h>
 #import <Cordova/CDVPlugin.h>
 
-@interface PGMultiviewController : CDVViewController
+@interface PGMultiViewController : CDVViewController
 {}
 @end
 
 
 
-@interface PGMultiview : CDVPlugin
+@interface PGMultiView : CDVPlugin
 {}
 
-@property (nonatomic, strong) PGMultiviewController* childViewController;
+@property (nonatomic, strong) PGMultiViewController* childViewController;
 
 
 

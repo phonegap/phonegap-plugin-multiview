@@ -12,10 +12,10 @@
     <issue>https://github.com/purplecabbage/phonegap-plugin-multiview/issues</issue>
 
     <js-module src="www/multiview.js" name="multiview">
-        <clobbers target="PGMultiview" />
+        <clobbers target="PGMultiView" />
     </js-module>
 
-     <!-- android -->
+
     <platform name="android">
 
         <config-file target="res/xml/config.xml" parent="/*">
@@ -25,24 +25,26 @@
         </config-file>
 
         <source-file src="src/android/PGMultiView.java" target-dir="src/phonegap/pgmultiview" />
+
         <source-file src="src/android/PGMultiViewActivity.java" target-dir="src/phonegap/pgmultiview" />
+
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="PGMultiview">
-                <param name="ios-package" value="PGMultiview"/>
+            <feature name="PGMultiView">
+                <param name="ios-package" value="PGMultiView"/>
             </feature>
         </config-file>
 
-        <header-file src="src/ios/PGMultiview.h" />
-        <source-file src="src/ios/PGMultiview.m" />
+        <header-file src="src/ios/PGMultiView.h" />
+        <source-file src="src/ios/PGMultiView.m" />
     </platform>
 
     <!-- windows -->
     <platform name="windows">
-        <js-module src="src/windows/PGMultiviewProxy.js" name="PGMultiviewProxy">
+        <js-module src="src/windows/PGMultiViewProxy.js" name="PGMultiViewProxy">
             <merges target="" />
         </js-module>
 

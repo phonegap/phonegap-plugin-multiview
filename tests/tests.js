@@ -1,19 +1,19 @@
 
 exports.defineAutoTests = function() {
 
-    describe('PGMultiview', function () {
+    describe('PGMultiView', function () {
         it("should exist", function() {
-            expect(PGMultiview).toBeDefined();
+            expect(PGMultiView).toBeDefined();
         });
 
         it("should have a loadView function", function() {
-            expect(PGMultiview.loadView).toBeDefined();
-            expect(PGMultiview.loadView).toEqual(jasmine.any(Function));
+            expect(PGMultiView.loadView).toBeDefined();
+            expect(PGMultiView.loadView).toEqual(jasmine.any(Function));
         });
 
         it("should have a dismissView function", function() {
-            expect(PGMultiview.dismissView).toBeDefined();
-            expect(PGMultiview.dismissView).toEqual(jasmine.any(Function));
+            expect(PGMultiView.dismissView).toBeDefined();
+            expect(PGMultiView.dismissView).toEqual(jasmine.any(Function));
         });
     });
 }
