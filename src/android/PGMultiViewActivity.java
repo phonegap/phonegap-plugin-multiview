@@ -16,7 +16,6 @@ import android.view.KeyEvent;
 public class PGMultiViewActivity extends CordovaActivity {
 
     Activity secondActivity;
-    static Dialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,32 +24,8 @@ public class PGMultiViewActivity extends CordovaActivity {
 
         Bundle bundle =getIntent().getExtras();
         String url = bundle.getString("start URL");
-       // launchWebView();
         loadUrl(url);
-
-    }
-    public void launchWebView() {
-
-        secondActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                dialog = new Dialog(secondActivity,android.R.style.Theme_Translucent_NoTitleBar);
-
-
-                LinearLayout linearLayout = new LinearLayout(secondActivity);
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
-                RelativeLayout layoutMain = new RelativeLayout(secondActivity);
-                layoutMain.setBackgroundColor(Color.CYAN);
-                RelativeLayout.LayoutParams setup = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                setup.addRule(RelativeLayout.CENTER_IN_PARENT);
-                linearLayout.setLayoutParams(setup);
-                layoutMain.addView(linearLayout);
-                dialog.setContentView(layoutMain);
-                dialog.show();
-            }
-        });
-
-
     }
 
 }
+

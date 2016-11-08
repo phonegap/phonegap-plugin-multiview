@@ -1,6 +1,5 @@
 // (c)2016 Jesse MacFadyen and Sterling Gerritz,  Adobe Systems Incorporated
 cordova.define("phonegap-plugin-multiview.multiview", function(require, exports, module) {
-
 var exec = require('cordova/exec');
 
 module.exports = {
