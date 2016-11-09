@@ -1,20 +1,16 @@
-// (c) 2011-2016 Jesse MacFadyen,  Adobe Systems Incorporated
-
+// (c)2016 Jesse MacFadyen and Sterling Gerritz,  Adobe Systems Incorporated
+cordova.define("phonegap-plugin-multiview.multiview", function(require, exports, module) {
 var exec = require('cordova/exec');
 
 module.exports = {
 
-	loadView:function(strPath) {
-        var onSuccess = function(res) {
-            // window.alert("loadView::onSuccess " + res);
-        }
-		exec(onSuccess,null,"PGMultiView","loadView",[strPath]);
-	},
+  loadView:function(strPath) {
+    exec(null,null,"PGMultiView","loadActivity",[strPath]);
+  },
 
     dismissView:function() {
-        var onSuccess = function(res) {
-            // window.alert("dismissView::onSuccess " + res);
-        }
-        exec(onSuccess,null,"PGMultiView","dismissView",[]);
+        exec(null,null,"PGMultiView","dismissActivity",[]);
     }
 }
+
+});
