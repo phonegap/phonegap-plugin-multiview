@@ -1,3 +1,4 @@
+
         package org.apache.cordova.pgmultiview;
 
         import org.apache.cordova.CordovaWebView;
@@ -21,44 +22,46 @@
         import android.os.Build;
         import android.content.Intent;
 
+
+
+
 public class PGMultiView extends CordovaPlugin {
 
     protected static final String LOG_TAG = "PGMultiView";
 
     protected Intent intent;
 
-    /**
-     * Executes the request and returns PluginResult.
-     *
-     * @param action the action to execute.
-     * @param args JSONArry of arguments for the plugin.
-     * @param callbackContext the callbackContext used when calling back into JavaScript.
-     * @return boolean success or fail
-     */
 
+// @param action the action to execute.
+// @param args JSONArry of arguments for the plugin.
+// @param the context used when calling back to JS .
+// @return boolean success or fail
 
-    //cordova is context of main activity.  webView is the webview we are running the main Activity (cordova) inside of.
+//cordova is context of main activity.  webView is the webview we are running the main Activity (cordova) inside of.
+
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
     }
 
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("loadView")) {
+
+        if (action.equals("loadActivity")) {
             final String url = args.getString(0);
 
             LOG.d(LOG_TAG, "url = " + url);
-            viewWebView(url);
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
-            pluginResult.setKeepCallback(true);
-            callbackContext.sendPluginResult(pluginResult);
+            startCordovaActivity(url);
+
         }
-        else if (action.equals("dismissView")) {
+
+        else if (action.equals("dismissActivity")) {
+
             quit();
         }
         return true;
     }
 
-    private void viewWebView(final String url){ //url is passed in from execute, its args.getstring(0)
+
+    private void startCordovaActivity(final String url){ //url is passed in from execute, its args.getstring(0)
         Intent intent = new Intent(this.cordova.getActivity(), PGMultiViewActivity.class);
         intent.putExtra("start URL", url);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //updated to 'set' tabs
@@ -66,7 +69,9 @@ public class PGMultiView extends CordovaPlugin {
     }
 
     private void quit(){
-        LOG.d(LOG_TAG, "you are now exiting the app");
+
+        LOG.d(LOG_TAG, "Closing the secondary View/Activity");
+
         this.cordova.getActivity().finish();
     }
 
