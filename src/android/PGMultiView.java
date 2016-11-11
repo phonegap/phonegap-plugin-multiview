@@ -1,4 +1,4 @@
-//package org.apache.cordova.pgmultiview;
+package phonegap.pgmultiview;
 
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
@@ -38,16 +38,15 @@ public class PGMultiView extends CordovaPlugin {
     }
 
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("loadActivity")) {
+        if (action.equals("loadView")) {
             final String url = args.getString(0);
-
             LOG.d(LOG_TAG, "url = " + url);
             startCordovaActivity(url);
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
         }
-        else if (action.equals("dismissActivity")) {
+        else if (action.equals("dismissView")) {
             quit();
         }
         return true;
@@ -66,3 +65,4 @@ public class PGMultiView extends CordovaPlugin {
     }
 
 }
+
