@@ -38,7 +38,7 @@ public class PGMultiView extends CordovaPlugin {
     }
 
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("loadActivity")) {
+        if (action.equals("loadView")) {
             final String url = args.getString(0);
 
             LOG.d(LOG_TAG, "url = " + url);
@@ -47,7 +47,7 @@ public class PGMultiView extends CordovaPlugin {
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
         }
-        else if (action.equals("dismissActivity")) {
+        else if (action.equals("dismissView")) {
             quit();
         }
         return true;
