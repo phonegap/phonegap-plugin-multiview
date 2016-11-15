@@ -1,4 +1,4 @@
-package org.apache.cordova.pgmultiview;
+package phonegap.pgmultiview;
 
 import android.graphics.Color;
 import android.os.Bundle;

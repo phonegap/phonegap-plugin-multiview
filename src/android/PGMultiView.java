@@ -1,5 +1,4 @@
-//package org.apache.cordova.pgmultiview;
-
+package phonegap.pgmultiview;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -32,13 +31,13 @@ public class PGMultiView extends CordovaPlugin {
 // @param the context used when calling back to JS .
 // @return boolean success or fail
 
-//cordova is context of main activity.  webView is the webview we are running the main Activity (cordova) inside of.
+    //cordova is context of main activity.  webView is the webview we are running the main Activity (cordova) inside of.
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
     }
 
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("loadActivity")) {
+        if (action.equals("loadView")) {
             final String url = args.getString(0);
 
             LOG.d(LOG_TAG, "url = " + url);
@@ -47,7 +46,7 @@ public class PGMultiView extends CordovaPlugin {
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
         }
-        else if (action.equals("dismissActivity")) {
+        else if (action.equals("dismissView")) {
             quit();
         }
         return true;
