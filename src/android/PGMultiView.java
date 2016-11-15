@@ -1,5 +1,4 @@
-//package org.apache.cordova.pgmultiview;
-
+package phonegap.pgmultiview;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -32,7 +31,7 @@ public class PGMultiView extends CordovaPlugin {
 // @param the context used when calling back to JS .
 // @return boolean success or fail
 
-//cordova is context of main activity.  webView is the webview we are running the main Activity (cordova) inside of.
+    //cordova is context of main activity.  webView is the webview we are running the main Activity (cordova) inside of.
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
     }
