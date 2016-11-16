@@ -24,6 +24,12 @@
             </feature>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="application">
+            <activity android:name="phonegap.pgmultiview.PGMultiViewActivity"
+                      android:label="PGMultiViewActivity" >
+            </activity>
+        </config-file>
+
         <source-file src="src/android/PGMultiView.java" target-dir="src/phonegap/pgmultiview" />
 
         <source-file src="src/android/PGMultiViewActivity.java" target-dir="src/phonegap/pgmultiview" />
