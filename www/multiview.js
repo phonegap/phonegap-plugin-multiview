@@ -2,16 +2,17 @@
 
 var exec = require('cordova/exec');
 var urlutil = require('cordova/urlutil');
-
 module.exports = {
+    loadView:function(url, message, success, error) {
+        strPath = urlutil.makeAbsolute(url);
+       // window.alert("URL = " + url);
 
-    loadView:function(strPath) {
-        // make sure it is absolute using cordova.js util method.
-        strPath = urlutil.makeAbsolute(strPath);
-        exec(null,null,"PGMultiView","loadView",[strPath]);
+        exec(success, error,"PGMultiView","loadView",[url, message]);
     },
-
-    dismissView:function() {
-        exec(null,null,"PGMultiView","dismissView",[]);
+    dismissView:function(message) {
+        exec(null,null,"PGMultiView","dismissView",[message]);
+    },
+    getMessage:function(success, error) {
+        exec(success,error,"PGMultiView","getMessage",[]);
     }
-}
+};

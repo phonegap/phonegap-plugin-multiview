@@ -1,31 +1,24 @@
 
 package phonegap.pgmultiview;
 
-import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.LOG;
-import org.apache.cordova.Config;
-import org.apache.cordova.CordovaActivity;
-import org.apache.cordova.CordovaArgs;
-import org.apache.cordova.CordovaHttpAuthHandler;
-import org.apache.cordova.PluginManager;
-import org.apache.cordova.PluginResult;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-// import android.manifest;
 import android.app.Activity;
-import android.os.Build;
 import android.content.Intent;
+import android.os.Bundle;
+
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaArgs;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.LOG;
+import org.json.JSONException;
+
+import static android.app.Activity.RESULT_OK;
 
 public class PGMultiView extends CordovaPlugin {
-
+    public CallbackContext callbackContext;
     protected static final String LOG_TAG = "PGMultiView";
-
+    public static int RESULT_CODE =42;
     protected Intent intent;
 
 // @param action the action to execute.
@@ -39,30 +32,48 @@ public class PGMultiView extends CordovaPlugin {
     }
 
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("loadView")) {
-            final String url = args.getString(0);
+        this.callbackContext = callbackContext;
 
-            //LOG.d(LOG_TAG, "url = " + url);
-            startCordovaActivity(url);
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
-            pluginResult.setKeepCallback(true);
-            callbackContext.sendPluginResult(pluginResult);
-        }
-        else if (action.equals("dismissView")) {
-            quit();
+         if (action.equals("loadView")) {
+            final String url = args.getString(0);
+            final String message = args.getString(1);
+           // LOG.d(LOG_TAG, "url = " + url);
+            startCordovaActivity(url, message);
+        } else if (action.equals("dismissView")) {
+           final String message = args.getString(0);
+            quit(message);
+        } else if(action.equals("getMessage")) {
+            LOG.d(LOG_TAG, "getMessage");
+            PGMultiViewActivity act = (PGMultiViewActivity) this.cordova.getActivity();
+            String message = act.getMessage();
+            LOG.d(LOG_TAG, "getMessage "+message);
+            callbackContext.success(message);
         }
         return true;
     }
 
-    private void startCordovaActivity(final String url){ //url is passed in from execute, its args.getstring(0)
+   private void startCordovaActivity(final String url, final String messageToChild) { //url is passed in from execute, its args.getstring(0)
         Intent intent = new Intent(this.cordova.getActivity(), PGMultiViewActivity.class);
         intent.putExtra("start URL", url);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //updated to 'set' tabs
-        this.cordova.getActivity().startActivity(intent);
+        intent.putExtra("Message to child", messageToChild);
+        cordova.startActivityForResult(this, intent, RESULT_CODE);
     }
 
-    private void quit(){
-        //LOG.d(LOG_TAG, "Closing the secondary View/Activity");
+   public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        Bundle bundle = intent.getExtras();
+        if (requestCode == RESULT_CODE) {
+            if (resultCode == RESULT_OK) {
+                String messageFromChild = bundle.getString("Message to parent");
+                callbackContext.success(messageFromChild);
+            }
+        }
+    }
+    
+   private void quit(String message) {
+        Intent result = new Intent();
+        result.putExtra("Message to parent", message);
+        this.cordova.getActivity().setResult(Activity.RESULT_OK, result);
         this.cordova.getActivity().finish();
     }
 
