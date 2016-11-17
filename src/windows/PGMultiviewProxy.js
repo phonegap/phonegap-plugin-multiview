@@ -1,6 +1,4 @@
 
-
-var exec = cordova.require('cordova/exec');
 var webview;
 
 // creates a webview to host content
