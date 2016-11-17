@@ -16,4 +16,4 @@ exports.defineAutoTests = function() {
             expect(PGMultiView.dismissView).toEqual(jasmine.any(Function));
         });
     });
-}
+};
