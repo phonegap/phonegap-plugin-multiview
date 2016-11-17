@@ -11,16 +11,15 @@
                 background-color:#4d537b;
             }
         </style>
-        <title>Hello World</title>
+        <title>MultiView Plugin - Android Demo (Parent Activity)</title>
     </head>
     <body>
-            <div class=contentWrap>
-                <div id=output>Tap the 'Next' button to create a new view, and navigate to it.</div>
-                <textarea id=txtArea>TODO: Input not currently wired</textarea>
-                <div id="btnShowNext" class="btnDiv">Next</div>
-            </div>
-
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <div class=contentWrap>
+         <div id=output>By tapping the 'Navigate to Child' button you create a new view, navigate to it, and pass the message.</br></div></div>
+            <textarea id=txtArea placeholder="Enter message to child view here"></textarea>
+            <div id="btnShowNext" class="btnDiv" >Navigate to Child </div>
+        </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
