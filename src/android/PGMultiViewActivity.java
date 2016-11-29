@@ -14,7 +14,7 @@ public class PGMultiViewActivity extends CordovaActivity {
         Bundle bundle = getIntent().getExtras();
         String url = bundle.getString("start URL");
         message = bundle.getString("Message to child");
-        loadUrl("file:///android_asset/www/" + url);
+        loadUrl(url);
     }
 
     public String getMessage() {
