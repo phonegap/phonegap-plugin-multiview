@@ -15,5 +15,12 @@ exports.defineAutoTests = function() {
             expect(PGMultiView.dismissView).toBeDefined();
             expect(PGMultiView.dismissView).toEqual(jasmine.any(Function));
         });
+
+        it("should have a getMessage function", function() {
+            expect(PGMultiView.getMessage).toBeDefined();
+            expect(PGMultiView.getMessage).toEqual(jasmine.any(Function));
+        });
+
+
     });
 };
