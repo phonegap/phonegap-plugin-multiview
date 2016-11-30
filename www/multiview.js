@@ -6,7 +6,6 @@ var urlutil = require('cordova/urlutil');
 module.exports = {
     loadView:function(strUrl, message, success, error) {
         strUrl = urlutil.makeAbsolute(strUrl);
-
         exec(success, error,"PGMultiView","loadView",[strUrl, message]);
     },
     dismissView:function(message) {
