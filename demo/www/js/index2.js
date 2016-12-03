@@ -1,3 +1,7 @@
+/* global txtArea:true*/
+/*global btnDismiss:true*/
+/*global PGMultiView:true*/
+/*global data:true*/
 document.addEventListener("DOMContentLoaded",function() {
  });
 
