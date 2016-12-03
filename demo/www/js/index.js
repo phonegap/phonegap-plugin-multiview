@@ -1,3 +1,4 @@
+/*global PGMultiView , txtArea */
 document.addEventListener("DOMContentLoaded",function() {
 });
 
