@@ -21,6 +21,17 @@ exports.defineAutoTests = function() {
             expect(PGMultiView.getMessage).toEqual(jasmine.any(Function));
         });
 
-
+        it("should navigate to a child view", function() {
+            var errHandler = function (err) {
+                console.log("error " + err);
+                expect("errorHandlerCalled").toEqual(false);
+            };
+            var testMessage = "hey, can this make it there and back again?";
+            PGMultiView.loadView("fixtures/index2.html", testMessage, function(res) {
+                console.log("success " + res);
+                expect(res).toEqual(testMessage);
+            },errHandler
+            );
+        });
     });
 };

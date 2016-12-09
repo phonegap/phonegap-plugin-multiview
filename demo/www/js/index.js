@@ -1,3 +1,4 @@
+/*global PGMultiView , txtArea */
 document.addEventListener("DOMContentLoaded",function() {
 });
 
@@ -14,6 +15,7 @@ document.addEventListener("deviceready",function() {
         };
 
         var txt = txtArea.value;
+        //contents of text area is sent to the Child Activity (PGMultiViewActivity.java)
         PGMultiView.loadView("index2.html", txt, success, error);
     });
 });
