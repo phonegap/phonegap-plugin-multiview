@@ -16,6 +16,11 @@ exports.defineAutoTests = function() {
             expect(PGMultiView.dismissView).toEqual(jasmine.any(Function));
         });
 
+        it("should have a getMessage function", function() {
+            expect(PGMultiView.getMessage).toBeDefined();
+            expect(PGMultiView.getMessage).toEqual(jasmine.any(Function));
+        });
+
         it("should navigate to a child view", function() {
             var errHandler = function (err) {
                 console.log("error " + err);
