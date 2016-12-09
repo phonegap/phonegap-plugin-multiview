@@ -10,4 +10,8 @@
 
     <js-module src="tests.js" name="tests">
     </js-module>
+
+    <asset src="www" target="cdvtests/fixtures">
+    </asset>
+
 </plugin>
