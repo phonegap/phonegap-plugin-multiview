@@ -11,6 +11,8 @@
 #pragma mark PGMultiViewController - CDVViewController subclass
 
 @implementation PGMultiViewController
+@synthesize pgmDelegate = _pgmDelegate;
+
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake) {
@@ -34,6 +36,13 @@
 @implementation PGMultiView
 
 @synthesize childViewController;
+
+
+static NSString * _msg;
++ (NSString *)msg { return _msg; }
++ (void)setMsg:(NSString *)newValue { _msg = newValue; }
+
+
 
 - (BOOL) shouldOverrideLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -68,15 +77,27 @@
 
 - (void)dismissView:(CDVInvokedUrlCommand*)command
 {
-    [self.viewController.navigationController popViewControllerAnimated:YES];
+    NSString* msg = [command argumentAtIndex:0];
+    PGMultiViewController* topView = (PGMultiViewController*)[self.viewController.navigationController popViewControllerAnimated:YES];
+    // seend the message back to our creator
+    [topView.pgmDelegate dismissWithResult:msg];
+
     self.viewController.navigationController.navigationBarHidden = YES;
     childViewController = NULL;
+
+    // When we get this message, we are dismissing the view so there is no need to use a callback into js
 }
 
 - (void)loadView:(CDVInvokedUrlCommand*)command
 {
     childViewController = [[PGMultiViewController alloc] init];
+    childViewController.pgmDelegate = self;
     childViewController.startPage = [command argumentAtIndex:0];
+
+    // childViewController setMessage:[command argumentAtIndex:1]
+    self.callbackId = command.callbackId;
+
+    PGMultiView.msg = [command argumentAtIndex:1];
 
     // TODO: set proper config.xml -> childViewController.configFile
 
@@ -89,10 +110,22 @@
         [nav pushViewController:self.viewController animated:NO];
         nav.hidesBarsOnSwipe  = YES;
         nav.hidesBarsOnTap = YES;
-
     }
 
     [self.viewController.navigationController pushViewController:childViewController animated:YES];
+}
+
+- (void)getMessage:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:PGMultiView.msg];
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)dismissWithResult:(NSString*)result
+{
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:result];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
 
 @end
