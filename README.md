@@ -6,6 +6,8 @@ This plugin allows your PhoneGap app to create multiple views.
 
 [Here is a video](https://youtu.be/WVbxFIGBh0Y) showing the demo project running in the ios simulator.
 
+[And here](https://youtu.be/_ZzBA28QO4s) is the android version.
+
 Each view:
 ===
 
