@@ -8,15 +8,18 @@ document.addEventListener("deviceready",function() {
 
     btnShowNext.addEventListener("click",function(){
         var success = function(data) {
-            txtArea.value= data;
+            var receivedObj = JSON.parse(data);
+            txtArea.value= receivedObj.message;
         };
         var error = function(error) {
-            alert(error);
+            alert("Oops, an error happened : " + error);
         };
 
-        var txt = txtArea.value;
+        var objToSend = {'message': txtArea.value,
+                         'whatever':'some value'};
+
         //contents of text area is sent to the Child Activity (PGMultiViewActivity.java)
-        PGMultiView.loadView("index2.html", txt, success, error);
+        PGMultiView.loadView("index2.html", JSON.stringify(objToSend), success, error);
     });
 });
 
