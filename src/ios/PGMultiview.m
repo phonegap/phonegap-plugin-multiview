@@ -11,7 +11,8 @@
 #pragma mark PGMultiViewController - CDVViewController subclass
 
 @implementation PGMultiViewController
-@synthesize pgmDelegate = _pgmDelegate;
+@synthesize pgmDelegate;
+@synthesize messageFromParent;
 
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
@@ -20,28 +21,14 @@
     }
 }
 
-// - (void)viewDidLoad
-// {
-//     [super viewDidLoad];
-//     CGRect webViewBounds = self.view.bounds;
-//     webViewBounds.origin = self.view.bounds.origin;
-//     webViewBounds.origin.x = 1;
-//     webViewBounds.size.width = webViewBounds.size.width - 1;
-//     self.webView.bounds = webViewBounds;
-// }
-
 @end
 
+
+#pragma mark PGMultiView - CDVPlugin subclass
 
 @implementation PGMultiView
 
 @synthesize childViewController;
-
-
-static NSString * _msg;
-+ (NSString *)msg { return _msg; }
-+ (void)setMsg:(NSString *)newValue { _msg = newValue; }
-
 
 
 - (BOOL) shouldOverrideLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
@@ -49,7 +36,7 @@ static NSString * _msg;
     return YES;
 }
 
-// TODO: override this, and use the config.xml for the currently loaded page
+// TODO: maybe override this, and use the config.xml for the currently loaded page
 // also, add ALL orientations to the application
 // - (BOOL)supportsOrientation:(UIInterfaceOrientation)orientation
 // {
@@ -93,18 +80,16 @@ static NSString * _msg;
     childViewController = [[PGMultiViewController alloc] init];
     childViewController.pgmDelegate = self;
     childViewController.startPage = [command argumentAtIndex:0];
+    childViewController.messageFromParent = [command argumentAtIndex:1];
 
-    // childViewController setMessage:[command argumentAtIndex:1]
     self.callbackId = command.callbackId;
-
-    PGMultiView.msg = [command argumentAtIndex:1];
 
     // TODO: set proper config.xml -> childViewController.configFile
 
     if(self.viewController.navigationController == NULL)
     {
         UINavigationController* nav = [[UINavigationController alloc] init];
-        nav.navigationBarHidden = NO;
+        nav.navigationBarHidden = YES;
         nav.delegate = self;
         self.webView.window.rootViewController = nav;
         [nav pushViewController:self.viewController animated:NO];
@@ -117,10 +102,21 @@ static NSString * _msg;
 
 - (void)getMessage:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:PGMultiView.msg];
+    PGMultiViewController* currentViewController = (PGMultiViewController*)self.viewController;
+    if([currentViewController isKindOfClass:[PGMultiViewController class]]) {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                                          messageAsString:currentViewController.messageFromParent];
 
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+    else {
+        CDVPluginResult* pluginError = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"NoValue"];
+         [self.commandDelegate sendPluginResult:pluginError callbackId:command.callbackId];
+    }
 }
+
+
+#pragma mark PGMultiViewDelegate
 
 - (void)dismissWithResult:(NSString*)result
 {

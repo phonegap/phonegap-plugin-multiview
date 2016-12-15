@@ -2,29 +2,29 @@
 #import <UIKit/UIKit.h>
 #import <Cordova/CDVPlugin.h>
 
+// ==========
+
 @protocol PGMultiViewDelegate <NSObject>
 
  - (void)dismissWithResult:(NSString*)result;
 
 @end
 
+// ==========
+
 @interface PGMultiViewController : CDVViewController
-{
-    @protected
-    id <PGMultiViewDelegate> _pgmDelegate;
-}
+{}
 
 @property (nonatomic, strong) id <PGMultiViewDelegate> pgmDelegate;
-
+@property (nonatomic, strong) NSString* messageFromParent;
 @end
 
 
+// ==========
 
-//PGMultiViewDelegate
-@interface PGMultiView : CDVPlugin<PGMultiViewDelegate>
-{
-}
-@property (class) NSString *msg;
+@interface PGMultiView : CDVPlugin<PGMultiViewDelegate,UINavigationControllerDelegate>
+{}
+
 
 @property (nonatomic, strong) PGMultiViewController* childViewController;
 @property (nonatomic, strong) NSString* callbackId;
