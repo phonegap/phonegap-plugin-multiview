@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded",function() {
     };
 
     var error = function(err) {
-        alert("Oops, error getting message from sender : " + err)
+        alert("Oops, error getting message from sender : " + err);
     };
 
     PGMultiView.getMessage(success, error);  //when the device is ready send message to parent
