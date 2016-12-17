@@ -2,93 +2,75 @@
 
 This plugin allows your PhoneGap app to create multiple views.
 
-[![Build Status](https://travis-ci.org/phonegap/phonegap-plugin-multiview.svg?branch=master)](https://travis-ci.org/phonegap/phonegap-plugin-multiview )
+## Please check out a demo video which illustrates the passing of data between webviews:
 
-[Here is a video](https://youtu.be/WVbxFIGBh0Y) showing the demo project running in the ios simulator.
+[Android Demo](https://youtu.be/_ZzBA28QO4s "Youtube -Android Demo Movie")
 
-[And here](https://youtu.be/_ZzBA28QO4s) is the android version.
+[iOS Demo](https://youtu.be/WVbxFIGBh0Y "Youtube -iOS Demo Movie")
 
-Each view:
-===
-
+Each View:
 - has it's own global context
 - has it's own collection of plugins (instances, classes are shared, so watch for statics )
 - can communicate via localStorage ( assuming they are loaded from the same location )
--has access to all Cordova resources
+- has access to all Cordova resources
 
-Currently Supported Platforms:
-===
-
+### Currently Supported Platforms:
 - iOS
 - Android
 
-This project includes a brief demo project, to run it in ios/Android:
-===
+### This Repo Includes a Brief Demo Project, to Run it in iOS/Android:
 
-    cd demo
-    cordova platform add ios (or) cordova platform add android
-    cordova plugin add --link .. (Android does not link)
-    cordova run ios (or) cordova run android
+```bash
+$ cd demo
+$ cordova platform add iOS (or) cordova platform add android
+$ cordova plugin add --link .. (Android does not link)
+$ cordova run iOS (or) cordova run android
+```
 
-The current API supports two views but will eventually have support for multiple views in a stack.
+The Demo application illustrates the passing of data between a parent-view and child-view, however the API provides support for 
+*multiple* views in a stack.  Each additional view must have it's own JavaScript file that corresponds with native portions of the plugin.
 
- Quickstart Guide to using the MultiView plugin on the Android Platform
- ===
+## Installation Instructions
 
- - To *launch* a new webview make this call in your application's JS:
-  PGMultiView.loadView(url, message, success, error);
+    // fork, clone and install from you local repo, or 
+    // install it from npm, using phonegap cli
+    phonegap plugin add phonegap-plugin-multiview
+    
+    // or cordova cli
+    cordova plugin add phonegap-plugin-multiview
 
-      @param 'url' the location of your html file.  The multiview plugin automatically adds the
-      prefix of :///android_asset/www/ if your url does not start with js
-      @param  'message', current version stores data in the form of string.  In the next release 'message' will require JSON objects.
-      @param 'success', a sucessful plugin callback
-      @param 'error', the plugin was not called
+## Quickstart Guide to Using the MultiView Plugin
 
-      -please note that you must make two separate JS files which correspond respectively to the native portions of the plugin
-      (PGMultiview.java and PGMultiviewActivity.java) if you want to utilize both views.
+### To launch a new webview make this call in your application's JavaScript:
+      PGMultiView.loadView(url, strPayload, success, error);
 
- - To *dismiss* a webview make this call in your application's JS:
-      PGMultiView.dismissView(data);
-      @param 'data' is currently a string - will be JSON object in next release.
+- **url**        : the location of your html file, relative or absolute.
+- **strPayload** : string data to pass to the secondary view (protip: use JSON.stringify & JSON.parse to pass objects) 
+- **success**    : function to call on success
+- **error**      : function to call on error
 
- - Passing Data
+Each view/page will typically have it's own js files, even though each view/page can access the same cordova.js and plugin collection.
 
-      - when the action dismissView() is called in your app's JS, the onQuit() function is executed
-      in the corresponding native (parent) PGMultiview.java file
+### To *dismiss* a webview make this call in your application's JS:
+    // this is a call that is run in the secondary view/page
+    PGMultiView.dismissView(strPayload);      
+           
+- **strPayload**, a string to pass back to the parent view. (protip: use JSON, as above)
 
-      - startCordovaActivity(url, message)
-        The child view is activated.  Data and a plugin result are passed to the plugin which updates the childview.
-        @param 'url', passed in from 'execute', this is the location of the html for the child activity
-        @param 'Message to Child', data to be sent from the parent (PGMultiView.java) to the child(PGMultiviewActivity.java)
+### An example callback success function:
 
-      - onActivityResult(requestCode, resultCode, intent )
-        - 'requestCode', an integer which is unpacked by the parent view from the intent passed by the childview
-        - 'result code', an arbitrary integer set in the parent view
-        > When the childview has been backgrounded (aka user navigates away from the PGMultiviewActivity.java) the parent view retrieves
-        the result of that activity ,"message from parent", and requestCode from the intent
-
-      - onQuit()
-        During onQuit() the plugin is notified that the child view is being backgrounded.
-        Data and an identifying key are packaged into an intent and sent to the parent view
-
-- Persisting Data
-
-      - Currently data is stored to memory (not disc).  Under most operating conditions this should not be an issue.
-       However, in an extreme low memory state you do risk losing data between views if either PGMultiView.java or or PGMultiViewActivity crash before reaching onStop() in the activity lifecycle.
-      - This should be resolved in the near future, the next release of this plugin bindsEvents() and writes the saved view state to local storage so that it can be retrieved at OnPause() in the Cordova Activities' lifecycle.
-
-ios:
-===
-
-Open a new view:
-====
-
-    PGMultiView.loadView(srcUrl);
-
-And remove it:
-====
-
-    PGMultiView.dismissView();
-
-
+```javascript
+function onMultiviewSuccess(strPayload) {
+    var obj = JSON.parse(strPayload);
+    if(obj.someExpectedProperty == 'some expected value') {
+        // do you always do what's expected of you?
+    }
+}
+```
+### Sequence of events ( a peek under the hood )
 ![MultiViewSequence](MultiViewSequence.png)
+
+### Known Issues
+On Android each view is implemented as a separate activity.  Under low memory situations, the parent view might be discarded while presenting the second view.  In this situation state will be lost and the result cannot be properly routed back to the success callback when the second view is dismissed.
+
+pull requests welcome!
