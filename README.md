@@ -49,9 +49,10 @@ The Demo application illustrates the passing of data between a parent-view and c
 - **success**    : function to call on success
 - **error**      : function to call on error
 
-### Please note that you must make two separate JavaScript files which correspond respectively to the native portions of the plugin(PGMultiview.java and PGMultiviewActivity.java) if you want to utilize both views.
+Each view/page will typically have it's own js files, even though each view/page can access the same cordova.js and plugin collection.
 
 ### To *dismiss* a webview make this call in your application's JS:
+    // this is a call that is run in the secondary view/page
     PGMultiView.dismissView(strPayload);      
            
 - **strPayload**, a string to pass back to the parent view. (protip: use JSON, as above)
