@@ -2,6 +2,8 @@
 
 This plugin allows your PhoneGap app to create multiple views.
 
+[![Build Status](https://travis-ci.org/phonegap/phonegap-plugin-multiview.svg?branch=master)](https://travis-ci.org/phonegap/phonegap-plugin-multiview )
+
 ## Please check out a demo video which illustrates the passing of data between webviews:
 
 [Android Demo](https://youtu.be/_ZzBA28QO4s "Youtube -Android Demo Movie")
