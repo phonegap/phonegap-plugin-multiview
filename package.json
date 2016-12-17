@@ -1,6 +1,6 @@
 {
   "name": "phonegap-plugin-multiview",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "PhoneGap Multiview Plugin",
   "cordova": {
     "id": "phonegap-plugin-multiview",
