@@ -67,7 +67,7 @@ function onMultiviewSuccess(strPayload) {
     }
 }
 ```
-- ### The MultiView Sequence:
+### Sequence of events ( a peek under the hood )
 ![MultiViewSequence](MultiViewSequence.png)
 
 ### Known Issues
