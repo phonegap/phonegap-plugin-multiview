@@ -8,12 +8,12 @@ var alias = module.exports = {
     getMessage:function(success, error) {
         exec(success,error,"PGMultiView","getMessage",[]);
     },
-    loadView:function(strUrl, message, success, error) {
+    loadView:function(strUrl, strPayload, success, error) {
         strUrl = urlutil.makeAbsolute(strUrl);
-        exec(success, error,"PGMultiView","loadView",[strUrl, message]);
+        exec(success, error,"PGMultiView","loadView",[strUrl, strPayload]);
     },
-    dismissView:function(message) {
-        exec(null,null,"PGMultiView","dismissView",[message]);
+    dismissView:function(strPayload) {
+        exec(null,null,"PGMultiView","dismissView",[strPayload]);
    } 
 };
 
