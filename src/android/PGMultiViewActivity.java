@@ -7,14 +7,14 @@ package phonegap.pgmultiview;
 
 public class PGMultiViewActivity extends CordovaActivity {
 
-    public String strPayload;
+    public String message;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
         String url = bundle.getString("start URL");
-        strPayload = bundle.getString("Message to child");
+        message = bundle.getString("Message to child");
         loadUrl(url);
     }
 
@@ -31,7 +31,7 @@ public class PGMultiViewActivity extends CordovaActivity {
         }}
 
     public String getMessage() {
-        return strPayload;
+        return message;
     }
 }
 

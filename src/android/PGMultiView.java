@@ -36,21 +36,21 @@ public class PGMultiView extends CordovaPlugin {
 
         if (action.equals("loadView")) {
             final String url = args.getString(0);
-            final String strPayload = args.getString(1);
-            startCordovaActivity(url, strPayload);
+            final String message = args.getString(1);
+            startCordovaActivity(url, message);
         } else if (action.equals("dismissView")) {
-            final String strPayload = args.getString(0);
-            quit(strPayload);
+            final String message = args.getString(0);
+            quit(message);
             //getMessage() is for the child activity (PGMultiViewActivity.java), not the parent
         } else if(action.equals("getMessage")) {
             PGMultiViewActivity act = (PGMultiViewActivity) this.cordova.getActivity();
-            String strPayload = act.getMessage();
-            callbackContext.success(strPayload);
+            String message = act.getMessage();
+            callbackContext.success(message);
         }
         return true;
     }
 
-    //Launch child activity(PGMultiViewActivity.java), send start url and strPayload in an intent
+    //Launch child activity(PGMultiViewActivity.java), send start url and message in an intent
     private void startCordovaActivity(final String url, final String messageToChild) { //url is passed in from execute, its args.getstring(0)
         Intent intent = new Intent(this.cordova.getActivity(), PGMultiViewActivity.class);
         intent.putExtra("start URL", url);
@@ -76,9 +76,9 @@ public class PGMultiView extends CordovaPlugin {
     }
 
     //in the child activity when the user clicks the "navigate to parent button":
-    private void quit(String strPayload) {
+    private void quit(String message) {
         Intent result = new Intent();
-        result.putExtra("Message to parent", strPayload);
+        result.putExtra("Message to parent", message);
         this.cordova.getActivity().setResult(Activity.RESULT_OK, result);
         this.cordova.getActivity().finish();
     }
