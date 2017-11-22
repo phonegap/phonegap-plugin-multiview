@@ -1,3 +1,12 @@
+
+# Deprecated
+This repo is no longer under active development and has been archived.
+If you are still interested in using/forking/contributing to this plugin, please do so at it's new home :
+https://github.com/purplecabbage/phonegap-plugin-multiview
+
+---
+
+
 # phonegap-plugin-multiview
 
 This plugin allows your PhoneGap app to create multiple views.
